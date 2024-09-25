@@ -1,0 +1,61 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f5f7fa; /* Soft light background */
+    margin: 0;
+    padding: 0;
+}
+
+.app-container {
+    width: 400px;
+    margin: 100px auto;
+    padding: 30px;
+    background: #ffffff; /* White background */
+    border-radius: 15px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+h1 {
+    color: #4a90e2; /* Bright blue */
+    margin-bottom: 20px;
+    font-size: 2em;
+}
+
+label {
+    margin-bottom: 10px;
+    display: block;
+    color: #333; /* Dark gray */
+    font-weight: bold;
+}
+
+input[type="date"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 2px solid #4a90e2; /* Bright blue border */
+    border-radius: 8px;
+    font-size: 1em;
+}
+
+button {
+    background-color: #4caf50; /* Green */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 1em;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: #388e3c; /* Darker green on hover */
+}
+
+#result {
+    margin-top: 20px;
+    font-size: 1.5em;
+    color: #4a90e2; /* Bright blue */
+    font-weight: bold;
+}
