@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List App</title>
+    <link rel="stylesheet" href="todo.css">
+</head>
+<body>
+    <div class="app-container">
+        <h1>To-Do List</h1>
+        <div class="input-container">
+            <input type="text" id="taskInput" placeholder="Add a new task...">
+            <select id="prioritySelect">
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
+            </select>
+            <button id="addButton">Add</button>
+        </div>
+        <div class="filter-container">
+            <button id="showAll">All</button>
+            <button id="showHigh">High</button>
+            <button id="showMedium">Medium</button>
+            <button id="showLow">Low</button>
+        </div>
+        <ul id="taskList"></ul>
+        <div class="footer">
+            <p>Stay organized!</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    const body = document.body;
+    
+    // Create a vector background
+    const background = document.createElement('div');
+    background.style.position = 'absolute';
+    background.style.top = '0';
+    background.style.left = '0';
+    background.style.width = '100%';
+    background.style.height = '100%';
+    background.style.zIndex = '-1'; // Send to back
+    background.style.opacity = '0.3';
+    background.style.background = 'url("https://www.transparenttextures.com/patterns/paper.png")'; // Sample texture
+    
+    body.appendChild(background);
+});
+
+// The rest of your existing JavaScript for the To-Do List remains unchanged.
+document.addEventListener('DOMContentLoaded', loadTasks);
+document.getElementById('addButton').addEventListener('click', addTask);
+document.getElementById('showAll').addEventListener('click', () => filterTasks('all'));
+document.getElementById('showHigh').addEventListener('click', () => filterTasks('high'));
+document.getElementById('showMedium').addEventListener('click', () => filterTasks('medium'));
+document.getElementById('showLow').addEventListener('click', () => filterTasks('low'));
+
+function loadTasks() {
+    const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    tasks.forEach(task => {
+        createTaskElement(task);
+    });
+}
+
+function addTask() {
+    const taskInput = document.getElementById('taskInput');
+    const prioritySelect = document.getElementById('prioritySelect');
+    const taskValue = taskInput.value.trim();
+    const priorityValue = prioritySelect.value;
+
+    if (taskValue) {
+        const task = { value: taskValue, priority: priorityValue };
+        createTaskElement(task);
+        saveTaskToLocalStorage(task);
+        taskInput.value = '';
+        prioritySelect.value = 'low';
+    } else {
+        alert('Please enter a task.');
+    }
+}
+
+function createTaskElement(task) {
+    const taskList = document.getElementById('taskList');
+    const li = document.createElement('li');
+
+    li.textContent = `${task.value} [${task.priority.charAt(0).toUpperCase() + task.priority.slice(1)}]`;
+    li.classList.add(task.priority);
+
+    const deleteButton = document.createElement('button');
+    deleteButton.textContent = 'Delete';
+    deleteButton.onclick = function () {
+        taskList.removeChild(li);
+        removeTaskFromLocalStorage(task.value);
+    };
+
+    li.appendChild(deleteButton);
+    taskList.appendChild(li);
+}
+
+function saveTaskToLocalStorage(task) {
+    const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    tasks.push(task);
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+}
+
+function removeTaskFromLocalStorage(taskValue) {
+    const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    const updatedTasks = tasks.filter(t => t.value !== taskValue);
+    localStorage.setItem('tasks', JSON.stringify(updatedTasks));
+}
+
+function filterTasks(priority) {
+    const taskList = document.getElementById('taskList');
+    taskList.innerHTML = ''; // Clear current tasks
+    const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    
+    tasks.forEach(task => {
+        if (priority === 'all' || task.priority === priority) {
+            createTaskElement(task);
+        }
+    });
+}
+
+    </script>
+</body>
+</html>
