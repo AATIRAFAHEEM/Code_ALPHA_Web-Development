@@ -1,0 +1,126 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Hide overflow to keep background clean */
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://www.transparenttextures.com/patterns/paper.png'), 
+                linear-gradient(135deg, #e0f7fa, #b2ebf2); /* Gradient with texture */
+    z-index: -1; /* Send to back */
+    opacity: 0.8; /* Slight transparency */
+}
+
+.app-container {
+    width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.9); /* Slightly transparent white */
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+    text-align: center;
+    color: #00796b; /* Dark teal */
+    margin-bottom: 20px;
+}
+
+.input-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+input[type="text"] {
+    flex: 1;
+    padding: 12px;
+    border: 1px solid #80cbc4; /* Teal border */
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+select {
+    padding: 12px;
+    border-radius: 5px;
+    border: 1px solid #80cbc4; /* Teal border */
+}
+
+button {
+    background-color: #00796b; /* Teal */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 12px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-weight: bold; /* Make the button text bolder */
+    letter-spacing: 1px; /* Space out letters slightly */
+}
+
+button:hover {
+    background-color: #004d40; /* Darker teal on hover */
+}
+
+.filter-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.filter-container button {
+    background-color: #80cbc4; /* Light teal */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px;
+    cursor: pointer;
+    flex: 1;
+    margin: 0 5px;
+    font-weight: bold; /* Make the button text bolder */
+}
+
+.filter-container button:hover {
+    background-color: #4db6ac; /* Darker light teal on hover */
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    padding: 12px;
+    margin: 5px 0;
+    background: #b2dfdb; /* Light teal for list items */
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+li button {
+    background: #d32f2f; /* Red for delete */
+    border: none;
+    color: white;
+    border-radius: 5px;
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+li button:hover {
+    background: #c62828; /* Darker red on hover */
+}
+
+.footer {
+    text-align: center;
+    margin-top: 20px;
+    color: #004d40; /* Darker teal */
+}
